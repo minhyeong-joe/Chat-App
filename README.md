@@ -8,15 +8,16 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - Completed
   - Local database
   - Back-end API
-
-- To do
-  - Layout/Design
+  - Basic Layout
     - Register
     - Log-in
+
+- To do
+  - Basic Layout
     - public chat room
     - private chat room **future feature**
   - Session for login
-  - Reducers
+  - Reducers/Actions
     - login user info
     - chat messages
 

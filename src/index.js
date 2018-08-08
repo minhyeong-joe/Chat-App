@@ -7,7 +7,7 @@ import ReduxPromise from 'redux-promise';
 import registerServiceWorker from './registerServiceWorker';
 import './style/style.min.css';
 
-import App from './components/App';
+import Landing from './components/landing';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -16,7 +16,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={Landing} />
       </div>
     </BrowserRouter>
   </Provider>

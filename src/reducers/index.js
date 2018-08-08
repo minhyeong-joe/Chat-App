@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import UserInfoReducer from './user_login';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  user: UserInfoReducer,
 });
 
 export default rootReducer;
