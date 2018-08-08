@@ -24,11 +24,15 @@
       $result = $chat->read();
       while($row = $result->fetch()) {
         extract($row);
+
+        // convert UTC to local time
+        $dateTime = new DateTime($time_stamp, new DateTimeZone('UTC'));
+        $dateTime->setTimezone(new DateTimeZone('America/Los_Angeles'));
         $chat_item = array(
           "id" => $id,
           "message" => htmlspecialchars($message),
           "username" => htmlspecialchars($username),
-          "timestamp" => $time_stamp
+          "timestamp" => $dateTime->format('Y-m-d h:i:s A')
         );
 
         array_push($response_arr['data'], $chat_item);
