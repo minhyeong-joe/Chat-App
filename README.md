@@ -11,14 +11,14 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - Basic Layout
     - Register
     - Log-in
+  - Session for login
+  - Reducers/Actions
+    - login user info
 
 - To do
   - Basic Layout
     - public chat room
-    - private chat room **future feature**
-  - Session for login
   - Reducers/Actions
-    - login user info
     - chat messages
 
 - Features to add (maybe)

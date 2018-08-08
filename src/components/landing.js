@@ -9,13 +9,20 @@ class Landing extends Component {
     this.state = {
       "login" : true
     }
+    this.registerComplete = this.registerComplete.bind(this);
+  }
+
+  registerComplete() {
+    this.setState({
+      "login" : true
+    });
   }
 
   renderForm() {
     if(this.state.login) {
       return (
         <div>
-          <LoginForm />
+          <LoginForm history={this.props.history} />
           <p className="form-changer" onClick={()=>this.setState({"login":false})}>
             Sign Up
           </p>
@@ -25,7 +32,7 @@ class Landing extends Component {
 
     return (
       <div>
-        <RegisterForm />
+        <RegisterForm registerComplete={this.registerComplete}/>
         <p className="form-changer" onClick={()=>this.setState({"login":true})}>
           Log In
         </p>
