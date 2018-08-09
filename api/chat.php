@@ -31,8 +31,8 @@
         $dateTime->setTimezone(new DateTimeZone('America/Los_Angeles'));
         $chat_item = array(
           "id" => $id,
-          "message" => htmlspecialchars($message),
-          "username" => htmlspecialchars($username),
+          "message" => $message,
+          "username" => $username,
           "timestamp" => $dateTime->format('Y-m-d h:i:s A')
         );
 
@@ -47,8 +47,10 @@
     case "POST":
       // write a new chat
       $data = json_decode(file_get_contents("php://input"));
-      $chat->user_id = $data->user_id;
       $chat->message = $data->message;
+      $chat->user_id = $data->user_id;
+      $chat->username = $data->username;
+      $chat->token = $data->token;
 
       if($chat->user_id) {
         if($chat->create()) {
@@ -61,7 +63,7 @@
           // fail to create
           $response_arr = array(
             "success" => false,
-            "message" => "There was an error."
+            "message" => "There was an error. (Manipulation of sessionStorage may cause the issue)"
           );
         }
       } else {

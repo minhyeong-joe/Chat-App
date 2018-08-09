@@ -41,8 +41,8 @@ class RegisterForm extends Component {
   }
 
   renderError() {
-    if(this.props.createUserResponse.payload) {
-      const { success, message } = this.props.createUserResponse.payload.data;
+    if(this.props.createUserResponse) {
+      const { success, message } = this.props.createUserResponse;
       if (success === false) {
         return (
           <div className="alert alert-danger">
@@ -83,7 +83,7 @@ class RegisterForm extends Component {
         />
         {this.renderError()}
         <button type="submit" className="btn btn-primary">
-          <i className="fas fa-sign-in-alt"></i> Sign Up
+          <i className="fas fa-user-plus"></i> Sign Up
         </button>
       </form>
     );
@@ -108,7 +108,7 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    createUserResponse: state.createUser
+    createUserResponse: state.userInfo
   };
 }
 

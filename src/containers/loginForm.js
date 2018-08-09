@@ -37,17 +37,18 @@ class LoginForm extends Component {
   }
 
   renderError() {
-    if(this.props.userInfo.payload) {
-      const { success, message, data } = this.props.userInfo.payload.data;
+    if(this.props.userInfo) {
+      const { success, message, data } = this.props.userInfo;
       if (success === false) {
         return (
           <div className="alert alert-danger">
             {message}
           </div>
         );
-      } else if (success === true){
+      } else if (success === true && data){
         sessionStorage.setItem("user_id", data[0].user_id);
         sessionStorage.setItem("username", data[0].username);
+        sessionStorage.setItem("token", data[0].token);
       }
     }
   }

@@ -23,7 +23,7 @@ class Landing extends Component {
       return (
         <div>
           <LoginForm history={this.props.history} />
-          <p className="form-changer" onClick={()=>this.setState({"login":false})}>
+          <p className="form-changer d-inline" onClick={()=>this.setState({"login":false})}>
             Sign Up
           </p>
         </div>
@@ -33,7 +33,7 @@ class Landing extends Component {
     return (
       <div>
         <RegisterForm registerComplete={this.registerComplete}/>
-        <p className="form-changer" onClick={()=>this.setState({"login":true})}>
+        <p className="form-changer d-inline" onClick={()=>this.setState({"login":true})}>
           Log In
         </p>
       </div>
@@ -44,7 +44,7 @@ class Landing extends Component {
     return (
       <div className="landing-bg">
         <div className="landing-box text-center">
-          <h3>Welcome To The Chat App</h3>
+          <h3>Welcome To iTok</h3>
           <hr />
           {this.renderForm()}
         </div>

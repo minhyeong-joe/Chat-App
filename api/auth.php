@@ -33,7 +33,8 @@
           extract($row);
           $user_data = array(
             "user_id" => htmlspecialchars($id),
-            "username" => htmlspecialchars($username)
+            "username" => $username,
+            "token" => $password
           );
           array_push($response_arr['data'], $user_data);
 

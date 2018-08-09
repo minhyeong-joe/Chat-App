@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { userLogout } from '../actions';
+import Logout from '../containers/logout';
+import ChatList from '../containers/chatList';
+import NewChat from '../containers/newChat';
 
 
 class PublicChat extends Component {
@@ -11,26 +12,17 @@ class PublicChat extends Component {
     }
   }
 
-  logout() {
-    sessionStorage.clear();
-    this.props.userLogout();
-    this.props.history.push('/');
-  }
-
   render() {
-    const username = sessionStorage.getItem('username');
-    const user_id = sessionStorage.getItem('user_id');
-    console.log(username);
-    console.log(user_id);
 
     return(
-      <div>
-        <h1>Main Page</h1>
-        <p>{username}</p>
-        <button className="btn btn-danger" onClick={this.logout.bind(this)}>LOG OUT</button>
+      <div className="container-fluid public-chat">
+        <h1 className="text-center">iTok</h1>
+        <ChatList />
+        <NewChat />
+        <Logout history={this.props.history} />
       </div>
     );
   }
 }
 
-export default connect(null, {userLogout})(PublicChat);
+export default PublicChat;
