@@ -2,7 +2,7 @@
   // Header
   $http_origin = $_SERVER['HTTP_ORIGIN'];
 
-  if ($http_origin == "http://localhost:3000" || $http_origin == "https://itok-chat-app.heroku.app.com")
+  if ($http_origin == "http://localhost:3000" || $http_origin == "https://itok-chat-app.herokuapp.com")
   {
     header("Access-Control-Allow-Origin: $http_origin");
   }

@@ -9,10 +9,13 @@
 # production
 /build
 
+# database
+database.php
+
 # sass
-.sass-cache
-sass
-style.min.css.map
+# .sass-cache
+# sass
+# style.min.css.map
 
 # misc
 .DS_Store
