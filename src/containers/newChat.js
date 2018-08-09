@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { sendChat } from '../actions';
+// import { connect } from 'react-redux';
+// import { sendChat } from '../actions';
 
 const lineHeight = 20;
 
@@ -60,15 +60,20 @@ class NewChat extends Component {
         error: false,
         error_message: ""
       });
-      const { user_id, username, token } = sessionStorage;
+      // for authentication when sending message
+      // const { user_id, username, token } = sessionStorage;
+      const { username } = sessionStorage;
+
+      const d = new Date();
+      const timestamp = d.toUTCString();
 
       const dataToSend = {
-        message: message,
-        user_id: user_id,
-        username: username,
-        token: token
+        id: this.props.messages.length+1,
+        text: message,
+        user: username,
+        timestamp: timestamp
       }
-      this.props.sendChat(dataToSend);
+      this.props.sendMessage(dataToSend);
 
       this.setState({
         value: '',
@@ -122,6 +127,4 @@ class NewChat extends Component {
 
 export default reduxForm({
   form: 'newMessageForm',
-})(
-  connect(null, { sendChat })(NewChat)
-);
+})(NewChat);

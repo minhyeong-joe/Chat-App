@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchChats } from '../actions';
-import _ from 'lodash';
 
 class ChatList extends Component {
 
   constructor() {
     super();
 
-    this.refreshChat = this.refreshChat.bind(this);
     this.onCheckChange = this.onCheckChange.bind(this);
 
     this.state={
@@ -16,42 +12,30 @@ class ChatList extends Component {
     }
   }
 
-  componentWillMount() {
-    this.refreshChat();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  refreshChat() {
-    this.props.fetchChats(() => {
-      this.timer = setTimeout(this.refreshChat, 2000);
-    })
-  }
-
   renderChatBubbles() {
-    return _.map(this.props.chat, chat => {
-      if (chat.username === sessionStorage.getItem("username")) {
+    return this.props.messages.map(message => {
+      const date = new Date(message.timestamp);
+      const localTime = date.toLocaleString();
+      if (message.user === sessionStorage.getItem("username")) {
         return (
-          <div className="message w-75 mb-5 my-message" key={chat.id}>
+          <div className="message w-75 mb-5 my-message" key={message.id}>
             <div className="message-body text-left">
-              {chat.message}
+              {message.text}
             </div>
             <div className="message-footer text-right text-muted">
-              {chat.username} - {chat.timestamp}
+              {message.user} - {localTime}
             </div>
           </div>
         );
       }
 
       return (
-        <div className="message w-75 mb-5" key={chat.id}>
+        <div className="message w-75 mb-5" key={message.id}>
           <div className="message-body text-left">
-            {chat.message}
+            {message.text}
           </div>
           <div className="message-footer text-right text-muted">
-            {chat.username} - {chat.timestamp}
+            {message.user} - {localTime}
           </div>
         </div>
       );
@@ -69,11 +53,8 @@ class ChatList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const prevPropsLastID = Object.keys(prevProps.chat)[Object.keys(prevProps.chat).length-1];
-    const thisPropsLastID = Object.keys(this.props.chat)[Object.keys(this.props.chat).length-1];
-    if (prevPropsLastID !== thisPropsLastID && this.state.autoscroll) {
+    if(this.state.autoscroll)
       this.scrollToBottom();
-    }
   }
 
   onCheckChange() {
@@ -105,10 +86,4 @@ class ChatList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    chat: state.chatLog
-  };
-}
-
-export default connect(mapStateToProps, { fetchChats })(ChatList);
+export default ChatList;
