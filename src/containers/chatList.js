@@ -20,9 +20,13 @@ class ChatList extends Component {
     this.refreshChat();
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   refreshChat() {
     this.props.fetchChats(() => {
-      setTimeout(this.refreshChat, 2000);
+      this.timer = setTimeout(this.refreshChat, 2000);
     })
   }
 
@@ -93,7 +97,7 @@ class ChatList extends Component {
           <button className="btn btn-info mr-4" onClick={this.scrollToBottom}>Scroll to Bottom</button>
           <div className="form-check">
             <input id="autoScrollCheckBox" type="checkbox" className="form-check-input d-block" defaultChecked={this.state.autoscroll} onChange={this.onCheckChange} />
-            <label className="form-check-label" htmlFor="autoScrollCheckBox">Enable Auto Scroll</label>        
+            <label className="form-check-label" htmlFor="autoScrollCheckBox">Enable Auto Scroll</label>
           </div>
         </div>
       </div>
