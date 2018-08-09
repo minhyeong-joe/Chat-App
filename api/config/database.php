@@ -6,7 +6,7 @@
     // private $username = 'root';
     // private $password = 'root';
     private $host = 'us-cdbr-iron-east-01.cleardb.net';
-    private $db_name = 'chat-app';
+    private $db_name = 'heroku_44151fb65ce3719';
     private $username = 'b281c93cba5b5b';
     private $password = '35356c10';
     private $conn;
