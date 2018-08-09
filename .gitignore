@@ -6,9 +6,6 @@
 # testing
 /coverage
 
-# database config
-database.php
-
 # production
 /build
 
