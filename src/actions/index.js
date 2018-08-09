@@ -1,5 +1,6 @@
 import axios from 'axios';
-const ROOT_URL = 'http://localhost/api';
+// const ROOT_URL = 'http://localhost/api';
+const ROOT_URL = 'https://itok-chat-app.herokuapp.com';
 
 export const CREATE_USER = "CREATE_USER";
 export const USER_AUTH = "USER_AUTH";
