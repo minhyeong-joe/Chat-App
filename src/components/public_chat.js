@@ -62,10 +62,13 @@ class PublicChat extends Component {
 
     return(
       <div className="container-fluid public-chat">
-        <h1 className="text-center">iTok</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <h1 className="text-center">iTok</h1>
+          <Logout history={this.props.history} />
+        </div>
+
         <ChatList messages={this.state.messages}/>
         <NewChat sendMessage={this.sendMessage} messages={this.state.messages}/>
-        <Logout history={this.props.history} />
       </div>
     );
   }

@@ -33,8 +33,9 @@
 .public-chat {
   height: 100vh;
 }
+
 .chat-list {
-  height: calc(100vh - 300px);
+  height: calc(100vh - 156px);
   // border: 1px solid black;
   overflow-y: auto;
   .message {
@@ -82,12 +83,9 @@
 .form-inline .form-check {
   width: auto;
 }
-.new-chat {
-  padding: 0.5rem 0 1.5rem;
-}
 textarea {
   resize: none;
-  overflow: hidden;
+  // overflow: hidden;
 }
 .loader {
   max-width: 50px;

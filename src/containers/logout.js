@@ -12,7 +12,7 @@ class Logout extends Component {
 
   render() {
     return (
-      <div className="text-center mb-5">
+      <div className="text-center ml-auto">
         <button className="btn btn-danger" onClick={this.logout.bind(this)}>LOG OUT</button>
       </div>
     );

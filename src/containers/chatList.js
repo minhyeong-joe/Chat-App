@@ -65,8 +65,8 @@ class ChatList extends Component {
 
   render() {
     return(
-      <div>
-        <div className="chat-list p-2 mb-4">
+      <div className="chat-block">
+        <div className="chat-list p-2">
 
           {this.renderChatBubbles()}
           <div style={{ float:"left", clear: "both" }}
@@ -74,7 +74,7 @@ class ChatList extends Component {
           </div>
 
         </div>
-        <div className="form-inline">
+        <div className="form-inline mb-2">
           <button className="btn btn-info mr-4" onClick={this.scrollToBottom}>Scroll to Bottom</button>
           <div className="form-check">
             <input id="autoScrollCheckBox" type="checkbox" className="form-check-input d-block" defaultChecked={this.state.autoscroll} onChange={this.onCheckChange} />
