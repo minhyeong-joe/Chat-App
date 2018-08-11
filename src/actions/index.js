@@ -20,8 +20,9 @@ export function createUser(values, callback) {
   }
 }
 
-export function authUser(values) {
+export function authUser(values, callback) {
   const request = axios.post(`${ROOT_URL}/auth.php`, values);
+  request.then(() => callback());
 
   return {
     type: USER_AUTH,

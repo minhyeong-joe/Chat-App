@@ -20,7 +20,9 @@ class PublicChat extends Component {
       storageBucket: "itok-chat.appspot.com",
       messagingSenderId: "160859330147"
     };
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    }
 
     this.state = {
       messages: []

@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { authUser } from '../actions';
+import loader from '../img/loader.gif';
 
 class LoginForm extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      loggingIn: false,
+    };
+
+    this.renderLoginBtn = this.renderLoginBtn.bind(this);
+    this.loggingIn = this.loggingIn.bind(this);
+  }
 
   componentWillMount() {
     if(sessionStorage.getItem("user_id")) {
@@ -33,7 +45,10 @@ class LoginForm extends Component {
   }
 
   onSubmit(values) {
-    this.props.authUser(values);
+    this.loggingIn();
+    this.props.authUser(values, () => {
+      this.loggingIn();
+    });
   }
 
   renderError() {
@@ -45,16 +60,40 @@ class LoginForm extends Component {
             {message}
           </div>
         );
-      } else if (success === true && data){
+      } else if (success === true && data) {
         sessionStorage.setItem("user_id", data[0].user_id);
         sessionStorage.setItem("username", data[0].username);
         sessionStorage.setItem("token", data[0].token);
       }
+
     }
   }
 
+  loggingIn() {
+    this.setState(prevState => ({
+      loggingIn: !prevState.loggingIn
+    }));
+  }
+
+  renderLoginBtn() {
+
+    const { invalid, submitting, pristine } = this.props;
+
+    if(this.state.loggingIn) {
+      return (
+        <img src={loader} alt="logging in..." className="loader"/>
+      );
+    }
+
+    return (
+      <button type="submit" className="btn btn-success" disabled={invalid || submitting || pristine}>
+        <i className="fas fa-sign-in-alt"></i> LOG IN
+      </button>
+    );
+  }
+
   render() {
-    const { handleSubmit, invalid, submitting, pristine } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <form className="form-group" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -73,9 +112,7 @@ class LoginForm extends Component {
           component={this.renderField}
         />
         {this.renderError()}
-        <button type="submit" className="btn btn-success" disabled={invalid || submitting || pristine}>
-          <i className="fas fa-sign-in-alt"></i> LOG IN
-        </button>
+        {this.renderLoginBtn()}
       </form>
     );
   }
